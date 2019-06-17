@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="">
+        <div>
+            <label for="Name">Name</label>
+            <br>
+            <input type="text" name="" id="Name">
+            <br>
+            <span  style="color: red" id="name_error"></span>
+        </div>
+        <div>
+            <label for="Surname">Surname</label>
+            <br>
+            <input type="text" name="" id="Surname">
+            <br>
+            <span  style="color: red" id="surname_error"></span>
+        </div>
+        <div>
+            <label for="Email">Email</label>
+            <br>
+            <input type="text" name="" id="Email">
+            <br>
+            <span  style="color: red" id="email_error"></span>
+        </div>
+        <div>
+            <label for="Password">Password</label>
+            <br>
+            <input type="password" name="" id="Password">
+            <br>
+            <span  style="color: red" id="password_error"></span>
+        </div>
+        <button onclick="register()">register</button>
+        <div>
+            <label for="" style="color: green" id="regname"></label><br>
+            <label for="" style="color: green" id="regsurname"></label><br>
+            <label for="" style="color: green" id="regemail"></label><br>
+            <label for="" style="color: green" id="regpassword"></label><br>
+            <label for="" style="color: rgb(204, 139, 0)" id="message" class="success-text"></label>
+            <br><br>
+            <br><br>
+            <br><br>
+        </div>
+
+    </form>
+
+
+    <script>
+
+
+        function is_empty(value) {
+            return value == null || value == "" || value == undefined;
+        }
+        function is_email(value) {
+            return value.includes("@");
+        }
+
+        function register() {
+            // debugger;
+      
+            document.getElementById("regname").innerText = "";
+            document.getElementById("regsurname").innerText = "";
+            document.getElementById("regemail").innerText = "";
+            document.getElementById("regpassword").innerText = "";
+
+            document.getElementById("name_error").innerText = "";
+            document.getElementById("surname_error").innerText = "";
+            document.getElementById("email_error").innerText = "";
+            document.getElementById("password_error").innerText = "";
+
+            let is_form_valid = true;
+
+            if (is_empty(document.getElementById("Name").value)) {
+                is_form_valid = false;
+                document.getElementById("name_error").innerText = "Name is incorrect."
+            }
+            if (is_empty(document.getElementById("Surname").value)) {
+                is_form_valid = false;
+                document.getElementById("surname_error").innerText = "Surname is incorrect."
+            }
+            if (is_empty(document.getElementById("Email").value)) {
+                is_form_valid = false;
+                document.getElementById("email_error").innerText = "Email is incorrect."
+            }
+            if (!is_email(document.getElementById("Email").value)) {
+                is_form_valid = false;
+                document.getElementById("email_error").innerText = "Email is incorrect."
+            }
+            if (is_empty(document.getElementById("Password").value)) {
+                is_form_valid = false;
+                document.getElementById("password_error").innerText = "Password is incorrect."
+            }
+            if (is_form_valid) {
+                document.getElementById("regname").innerText = "Name: "+Name.value;
+                document.getElementById("regsurname").innerText = "Surname: "+Surname.value;
+                document.getElementById("regemail").innerText = "Email: " + Email.value;
+                document.getElementById("regpassword").innerText = "Password: "+ Password.value;
+                document.getElementById("message").innerText = "Congratulations. You Registered Succesfully ";
+            }
+
+        }
+
+
+        // task 1.Bir funksiya olsun, hansiki o funksiyani cagirdigimiz zaman iki reqem qebul edecek. 
+        // Eger bu reqemlerin her ikisi de musbet ve ya her ikisi de menfidirse ekrana false cixartsin.
+        // Eger bu reqemlerin biri menfi digeri ise musbetdirse o zaman true cixartsin.
+
+
+        function check_numbers(first, second) {
+            return (((first < 0 && second < 0) || (first > 0 && second > 0)) ? false : true);
+        }
+
+        // task 2. Bir funksiya yazin hansiki iki reqem qebul edir. Funksiyani cagirdigimiz zaman eger bu iki
+        // reqemlerden biri 70-dirse ve verilen iki reqemin cemi 70-e beraberdirse o zaman true, eks halda false cixartsin.
+        function find_70(first, second) {
+            return (((first == 70 || second == 70) || ((first + second) == 70)) ? true : false);
+        }
+        // task 3. 1-den 20-ye kimi olan ededleri console penceresinde gosterin. Ve her bir reqemin qarsisinda tek ve ya cut oldugu yazilsin.
+        function check_odd_even(number) {
+            for (let i = 1; i <= number; i++) {
+                if (i % 2 == 0) {
+                    console.log(i + " cut ededdir")
+                }
+                else {
+                    console.log(i + " tek ededdir")
+                }
+            }
+        }
+        // task 4. meselen bir deyisheniniz var ve o ozunde ("skdksjcnowjcjwj2873468273468") bu formada string melumat saxlayir.
+        // Bu stringdekilerden istifade ederek random kod generasiya eden bir funksiya yazin.
+
+        function code_generator(code_length) {
+            let code = '';
+            let characters = "skdksjcnowjcjwj2873468273468";
+            let charactersLength = characters.length;
+            for (let i = 0; i < code_length; i++) {
+                code += characters.charAt(Math.random() * charactersLength);
+            }
+            return code;
+        }
+
+        // task 5.Bir funksiya yazin hansi ki bir reqem qebul edir. Funksiya bu reqemin yalniz 1-e ve ozune bolunduyu zaman true, eks halda ise false cixartsin.
+        function is_prime(number) {
+            let counter = 0;
+            for (let i = 1; i <= number; i++) {
+                if (number % i == 0) {
+                    counter++;
+                }
+            }
+            return ((counter == 2) ? true + "---sade ededdir" : false + "---murekkeb ededdir")
+        }
+
+
+
+        // task 5.Bir funksiya yazin hansi ki stringdeki en uzun sozu tapsin.
+        function find_longest_word(str) {
+            let sentence = str.match(/\w[a-z]{0,}/gi);
+            let longest_word = sentence[0];
+
+            for (let i = 1; i <= sentence.length - 1; i++) {
+                if (longest_word.length < sentence[i].length) {
+                    longest_word = sentence[i];
+                }
+            }
+            return longest_word;
+        }
+
+
+
+    </script>
+</body>
+
+</html>

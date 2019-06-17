@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Document</title>
+</head>
+<body>
+
+        function find_longest_word(str)
+        {
+          var array1 = str.match(/\w[a-z]{0,}/gi);
+          var result = array1[0];
+        
+          for(var x = 1 ; x < array1.length ; x++)
+          {
+            if(result.length < array1[x].length)
+            {
+            result = array1[x];
+            } 
+          }
+          return result;
+        }
+        console.log(find_longest_word('Web Development Tutorial'));
+
+
+
+    <div class="container row">
+        <div class="col-md-4">
+                <div class="form-group">
+                        <label for="Name">Name</label>
+                        <input type="text" id="Name"  class="form-control" ><br>
+                        <span class="text-danger" id="name_error"></span>
+                </div>
+                <div class="form-group">
+                        <label for="Surname">Surname</label>
+                        <input type="text" id="Surname" class="form-control" ><br>
+                        <span class="text-danger" id="surname_error"></span>
+                </div>
+                <div class="form-group">
+                        <label for="Email">Email</label>
+                        <input type="text" id="Email"  class="form-control" ><br>
+                        <span class="text-danger" id="email_error"></span>
+                </div>
+              
+                <div class="form-group">
+                            <label for="Password">Password</label>
+                            <input type="text" id="Password" class="form-control"><br>
+                            <span class="text-danger" id="password_error"></span>
+                </div>
+               
+             <button onclick="register()">Login</button>
+        </div>
+        <div class="col-md-8">
+        <label id="regname"></label><br>
+        <label id="regsurname"></label><br>
+        <label id="regemail"></label><bR>
+        <label id="regpassword"></label><br>
+        <label id="message" class="text-success"></label>
+        </div>
+     
+    </div>
+
+    <script>
+
+        function IsEmpty(value) {
+            return value==null || value=="" || value==undefined;
+        }
+
+        function isValidEmail(value) {
+            return value.includes("@");
+        }
+
+    function register() {
+        regname.innerText = "";
+        regsurname.innerText = "";
+        regemail.innerText = "";
+        regpassword.innerText = "";
+   
+        name_error.innerText = "";
+        surname_error.innerText = "";
+        email_error.innerText = "";
+        password_error.innerText = "";
+
+        let isFormValid = true;
+         //yoxlama
+         if(IsEmpty(document.getElementById("Name").value))
+         {
+            isFormValid = false;
+            
+            document.getElementById("name_error").innerText="Name can't be empty";
+         }
+         
+          if(IsEmpty(document.getElementById("Surname").value)) {
+              isFormValid = false;
+              document.getElementById("surname_error").innerText="Surname can't be empty";
+          }
+
+          if(IsEmpty(document.getElementById("Email").value)) {
+              isFormValid = false;
+              document.getElementById("email_error").innerText="Email can't be empty";
+          }
+
+          if(!isValidEmail(document.getElementById("Email").value)) {
+              isFormValid = false;
+              email_error.innerText+="Email is not correct";
+          }
+
+          if(IsEmpty(document.getElementById("Password").value)) {
+              isFormValid = false;
+              document.getElementById("password_error").innerText="Password is not correct";
+          }
+         
+         if(isFormValid)
+         {
+            regname.innerText = "Name: "+Name.value;
+           regsurname.innerText = "Surname: "+Surname.value;
+          regemail.innerText = "Email: "+Email.value;
+          regpassword.innerText = "Password: "+Password.value;
+
+          message.innerText = "Registration successfully completed";
+         }
+       
+    }
+    </script>
+
+</body>
+</html>
